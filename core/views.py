@@ -8,14 +8,14 @@ from core.forms import ProdutoForm, MarcaForm
 
 # Read Data
 def lista_produtos(request):
-    produtos = Produto.objects.all()
+    produtos = Produto.objects.all().order_by('nome')
     context = {
         'produtos': produtos
     }
     return render(request, "core/lista_produtos.html", context)
 
 def lista_de_compras(request):
-    produtos = Produto.objects.all()
+    produtos = Produto.objects.all().order_by('nome')
     lista_de_compras = []
     for item in produtos:
         print(item.precisa_comprar())
@@ -30,7 +30,7 @@ def lista_de_compras(request):
         return render(request, "core/lista_produtos.html", context)
 
 def lista_marcas(request):
-    marcas = Marca.objects.all()
+    marcas = Marca.objects.all().order_by('nome')
     context = {
         'marcas': marcas
     }
@@ -98,15 +98,21 @@ def usar(request, id):
 
 def editar_produto(request, id):
     produto = Produto.objects.get(id=id)
-    form = ProdutoForm(initial={
-        "nome": produto.nome,
-        "peso": produto.peso,
-        "preco": produto.preco,
-        "marca": produto.marca,
-        "tipo": produto.tipo,
-        "em_estoque": produto.em_estoque,
-        "necessario": produto.necessario,
-    })
+    if request.method == "POST":
+        form = ProdutoForm(request.POST, instance=produto)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_produtos')
+    else:
+        form = ProdutoForm(initial={
+            "nome": produto.nome,
+            "peso": produto.peso,
+            "preco": produto.preco,
+            "marca": produto.marca,
+            "tipo": produto.tipo,
+            "em_estoque": produto.em_estoque,
+            "necessario": produto.necessario,
+        })
     context = {
         "form": form
     }
