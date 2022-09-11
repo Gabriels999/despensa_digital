@@ -1,0 +1,7 @@
+{% extends 'core/base.html' %} {% block conteudo %}
+<form action="" method="post">
+  {% csrf_token %} {{ form }}
+  <button type="submit">Registrar</button>
+</form>
+<p>{{ flag }}</p>
+{% endblock conteudo %}

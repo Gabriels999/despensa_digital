@@ -1,0 +1,7 @@
+{%extends 'core/base.html'%} {%block conteudo%} {% for produto in produtos%}
+<div>
+  <h3>{{produto.nome}}</h3>
+  <a href=""> {{produto.marca}} </a>
+  <p>{{produto.peso}}Kg | R$<span>{{produto.preco}}</span></p>
+</div>
+{% endfor %} {%endblock conteudo%}
