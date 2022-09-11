@@ -14,9 +14,17 @@ class Produto(models.Model):
     preco = models.FloatField()
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE, related_name="marca")
     tipo = models.CharField(max_length=64, default='Cozinha')
+    em_estoque = models.IntegerField(default=0)
+    necessario = models.IntegerField(default=1)
 
     def __str__(self):
         if self.tipo == 'Cozinha':
             return f"{self.nome} | {self.marca} - {self.peso}Kg: R$ {self.preco}"
         else:
             return f"{self.nome} | {self.marca} - {self.peso} uni: R$ {self.preco}"
+
+    def precisa_comprar(self):
+        if self.em_estoque < self.necessario:
+            return True
+        else:
+            return False

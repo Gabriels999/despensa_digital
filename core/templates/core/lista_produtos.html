@@ -1,7 +1,50 @@
-{%extends 'core/base.html'%} {%block conteudo%} {% for produto in produtos%}
-<div>
-  <h3>{{produto.nome}}</h3>
-  <a href=""> {{produto.marca}} </a>
-  <p>{{produto.peso}}Kg | R$<span>{{produto.preco}}</span></p>
+{%extends 'core/base.html'%} {%block conteudo%}
+<div class="row" style="text-align: start">
+  {% for produto in produtos %}
+  <div class="col s12 m3">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">{{produto.nome}}</span>
+        <p>
+          <a href=""> {{produto.marca}} </a>
+          <span class="badge light-blue darken-4" style="color: #828e82"
+            >{{produto.tipo}}</span
+          >
+        </p>
+        <div>
+          <span>{{produto.peso}}Kg | R$<span>{{produto.preco}}</span></span>
+        </div>
+        <p>
+          <span>Estoque: {{produto.em_estoque}}</span> |
+          <span>Comprar: {{produto.necessario}}</span>
+        </p>
+      </div>
+      <div class="card-action">
+        <a
+          href="{% url 'compra_produto' produto.id %}"
+          class="waves-effect waves-light light-blue darken-3 btn"
+          >Comprei</a
+        >
+        <a
+          href="{% url 'usa_produto' produto.id %}"
+          class="waves-effect waves-light red darken-3 btn"
+          >Usei</a
+        >
+        <a
+          href="{% url 'confirma_deleta_produto' produto.id %}"
+          class="btn-floating btn-small waves-effect waves-light red"
+          style="position: absolute; top: -160px; right: -10px"
+          ><i class="fa-solid fa-xmark"></i
+        ></a>
+        <a
+          href="{% url 'editar_produto' produto.id %}"
+          class="btn-floating btn-medium waves-effect waves-light green"
+          style="position: absolute; bottom: 12px; right: 10px"
+          ><i class="fa-solid fa-pencil"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %} {%endblock conteudo%}
+{%endblock conteudo%}

@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}{% block conteudo %}
+<div class="row">
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title"
+          >Deseja mesmo deletar o produto abaixo da sua lista de despensa
+          ?</span
+        >
+        <p>{{produto.nome}} da marca {{produto.marca}}.</p>
+        <p>R${{produto.preco}}</p>
+      </div>
+      <div class="card-action">
+        <a
+          href="{% url 'deleta_produto' produto.id %}"
+          class="waves-effect waves-light light-blue darken-3 btn"
+          >Sim</a
+        >
+        <a
+          href="{% url 'lista_produtos' %}"
+          class="waves-effect waves-light light-blue darken-3 btn"
+          >Cancelar</a
+        >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock conteudo %}

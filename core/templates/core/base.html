@@ -5,19 +5,73 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!-- Fontawesome 6 CND-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Despensa Digital</title>
   </head>
   <body>
     <nav>
-      <h2>Despensa Digital</h2>
-      <ul>
-        <li><a href="{% url 'lista_produtos' %}">Lista de Produtos</a></li>
-        <li><a href="{% url 'cria_produto' %}">Registrar Produto</a></li>
-        <li><a href="">Marcas</a></li>
-        <div class="base-principal">
-          {% block conteudo %} {% endblock conteudo %}
+      <nav class="nav-extended light-blue darken-4">
+        <div class="nav-wrapper">
+          <a href="{% url 'lista_produtos' %}" class="brand-logo"
+            >Despensa Digital</a
+          >
+          <a
+            href="{% url 'lista_produtos' %}"
+            data-target="mobile-demo"
+            class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'lista_produtos' %}">Ver Produtos</a></li>
+            <li><a href="{% url 'lista_marcas' %}">Ver Marcas</a></li>
+            <li><a href="{% url 'cria_produto' %}">Registrar Produto</a></li>
+            <li><a href="{% url 'cria_marca' %}">Registrar Marca</a></li>
+          </ul>
         </div>
+      </nav>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="{% url 'lista_produtos' %}">Ver Produtos</a></li>
+        <li><a href="{% url 'lista_marcas' %}">Ver Marcas</a></li>
+        <li><a href="{% url 'cria_produto' %}">Registrar Produto</a></li>
+        <li><a href="{% url 'cria_marca' %}">Registrar Marca</a></li>
       </ul>
     </nav>
+    <div
+      class="base-principal"
+      style="margin-top: 15px; padding: 0 1%; text-align: center"
+    >
+      {% block conteudo %} {% endblock conteudo %}
+    </div>
+    <a
+      href="{% url 'lista_de_compras' %}"
+      class="btn-floating btn-large waves-effect waves-light red"
+      style="position: absolute; bottom: 70px; right: 5px"
+      ><i class="fa-solid fa-cart-shopping"></i
+    ></a>
+    <a
+      href="{% url 'lista_produtos' %}"
+      class="btn-floating btn-large waves-effect waves-light light-blue darken-3"
+      style="position: absolute; bottom: 10px; right: 5px"
+      ><i class="fa-solid fa-receipt"></i
+    ></a>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      var elems = document.querySelectorAll("select");
+      M.FormSelect.init(elems);
+    </script>
   </body>
 </html>

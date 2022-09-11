@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %} {% block conteudo %}
+<form action="" method="post" style="text-align: start; width: 70%; margin: 0 auto">
+  {% csrf_token %} {{ form }}
+  <button
+    class="waves-effect waves-light light-blue darken-3 btn"
+    type="submit"
+  >
+    Registrar
+  </button>
+</form>
+{% endblock conteudo %}
+<script>
