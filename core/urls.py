@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.lista_produtos, name="lista_produtos"),
     path("compras/", views.lista_de_compras, name="lista_de_compras"),
     path("lista/marcas", views.lista_marcas, name="lista_marcas"),
+    path("<id>/produtos/", views.lista_produtos_marca, name="lista_produtos_marca"),
 #   CREATE
     path("criar/produto/", views.cria_produto, name="cria_produto"),
     path("criar/marca/", views.cria_marca, name="cria_marca"),

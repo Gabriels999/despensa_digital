@@ -36,6 +36,13 @@ def lista_marcas(request):
     }
     return render(request, 'core/lista_marcas.html', context)
 
+def lista_produtos_marca(request, id):
+    produtos = Produto.objects.filter(marca=id)
+    context = {
+        "produtos": produtos
+    }
+    return render(request, "core/lista_produtos.html", context)
+
 # Create Data
 def cria_produto(request):
     if request.method == 'POST':

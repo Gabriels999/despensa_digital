@@ -6,7 +6,9 @@
       <div class="card-content white-text">
         <span class="card-title">{{produto.nome}}</span>
         <p>
-          <a href=""> {{produto.marca}} </a>
+          <a href="{% url 'lista_produtos_marca' produto.marca_id %}">
+            {{produto.marca}}
+          </a>
           <span class="badge light-blue darken-4" style="color: #828e82"
             >{{produto.tipo}}</span
           >
